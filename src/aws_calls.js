@@ -43,7 +43,6 @@ const check_errors = async (name, alias, start_time) => {
   });
   try {
     result = await cloudwatch_client.send(command);
-    console.log(result);
     if (result.MetricDataResults[0].Values.length > 0) {
       return true;
     }

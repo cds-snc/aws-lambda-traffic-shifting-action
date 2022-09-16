@@ -111,7 +111,17 @@ async function main() {
           start_time
         );
         if (err) {
-          console.log("ERRORS FOUND");
+          console.error(
+            `🟥 An error was detected in Cloudwatch, rolling back to version ${BLUE_VERSION}`
+          );
+          await aws_calls.shift_traffic(
+            FUNCTION_NAME,
+            ALIAS,
+            GREEN_VERSION,
+            BLUE_VERSION,
+            100
+          );
+          return false;
         }
         await new Promise((res) => setTimeout(res, 60 * 1000));
       }
