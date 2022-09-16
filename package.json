@@ -1,0 +1,27 @@
+{
+  "name": "aws-lambda-traffic-shifting-action",
+  "version": "1.0.0",
+  "description": "GitHub action for AWS Lambda traffic shifting",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cds-snc/aws-lambda-traffic-shifting-action.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cds-snc/aws-lambda-traffic-shifting-action/issues"
+  },
+  "homepage": "https://github.com/cds-snc/aws-lambda-traffic-shifting-action#readme",
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.171.0",
+    "@aws-sdk/client-lambda": "^3.171.0",
+    "aws-sdk": "^2.1216.0"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}
