@@ -1,9 +1,9 @@
-const isValidAlias = (v, name) => {
-  if (!validateDefined(v, name)) {
+const isValidAlias = (v, alias) => {
+  if (!validateDefined(v, alias)) {
     return false;
   }
 
-  if (name.length < 1 || name.length > 128) {
+  if (alias.length < 1 || alias.length > 128) {
     console.error(
       "❌ Alias needs to be between 1 and 128 characters in length."
     );
@@ -11,10 +11,11 @@ const isValidAlias = (v, name) => {
   }
 
   const pattern = "(?!^[0-9]+$)([a-zA-Z0-9-_]+)";
-  const re = new RegExp();
+  const re = new RegExp(pattern);
 
-  if (!re.test(name)) {
+  if (!re.test(alias)) {
     console.error(`❌ Alias is not valid, it needs to match ${pattern}`);
+    return false;
   }
   return true;
 };
@@ -33,12 +34,13 @@ const isValidFunctionName = (v, name) => {
 
   const pattern =
     "(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-d{1}:)?(d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:($LATEST|[a-zA-Z0-9-_]+))?";
-  const re = new RegExp();
+  const re = new RegExp(pattern);
 
   if (!re.test(name)) {
     console.error(
       `❌ Function name is not valid, it needs to match ${pattern}`
     );
+    return false;
   }
   return true;
 };
@@ -70,11 +72,12 @@ const isValidVersion = (v, version) => {
     return false;
   }
 
-  const pattern = "($LATEST|[0-9]+)";
-  const re = new RegExp();
+  const pattern = "(\\$LATEST|[0-9]+)";
+  const re = new RegExp(pattern);
 
   if (!re.test(version)) {
     console.error(`❌ ${v} is not valid, it needs to match ${pattern}`);
+    return false;
   }
   return true;
 };
