@@ -1,0 +1,11 @@
+name: AWS Lambda traffic shifting action
+description: GitHub action to automatically shift traffic from one lambda version to another
+author: "Canadian Digital Service"
+
+runs:
+  using: "node16"
+  main: "src/index.js"
+
+branding:
+  icon: "sunrise"
+  color: "white"
