@@ -6,7 +6,7 @@ The purpose of this action is to do a blue / green deploy for lambdas using [ali
 
 | NAME                    | DESCRIPTION                                                                                                     |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------- |
-| ALISA                   | The alias of the Lambda function you want to shift                                                              |
+| ALIAS                   | The alias of the Lambda function you want to shift                                                              |
 | FUNCTION_NAME           | The name of the Lambda function you want to shift                                                               |
 | BLUE_VERSION            | The existing version of the Lambda in the alias. This is optional and will be retrieved by the action if needed |
 | GREEN_VERSION           | The version you want to shift the Lambda to                                                                     |
