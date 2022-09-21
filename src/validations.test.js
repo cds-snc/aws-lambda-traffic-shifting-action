@@ -92,6 +92,6 @@ test("isValidVersion should be true for 9.repeat(1024)", (t) => {
   t.is(validations.isValidVersion("version", "9".repeat(1024)), true);
 });
 
-test.after.always("guaranteed cleanup", (t) => {
+test.after.always("guaranteed cleanup", () => {
   sinon.restore();
 });

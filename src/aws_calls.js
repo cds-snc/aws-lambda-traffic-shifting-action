@@ -36,33 +36,34 @@ const check_errors = async (name, alias, start_time) => {
       ReturnData: true,
     },
   ];
-  command = new GetMetricDataCommand({
+  const command = new GetMetricDataCommand({
     EndTime: end_time,
     StartTime: start_time,
     MetricDataQueries: query,
   });
   try {
-    result = await cloudwatch_client.send(command);
+    const result = await cloudwatch_client.send(command);
     if (result.MetricDataResults[0].Values.length > 0) {
       return true;
     }
     return false;
   } catch (error) {
     console.error(error);
-    return false;
+    return true;
   }
 };
 
 const get_current_alias = async (name, alias) => {
-  let command = new GetAliasCommand({
+  const command = new GetAliasCommand({
     FunctionName: name,
     Name: alias,
   });
   try {
-    result = await lambda_client.send(command);
+    const result = await lambda_client.send(command);
     return result;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
 
@@ -86,7 +87,7 @@ const shift_traffic = async (name, alias, blue, green, percentage) => {
   let routing_params = {};
   let weights = {};
   if (percentage / 100 < 1) {
-    weights[green] = percentage / 100;
+    weights[String(green)] = percentage / 100;
     routing_params = {
       FunctionName: name,
       Name: alias,
@@ -96,7 +97,7 @@ const shift_traffic = async (name, alias, blue, green, percentage) => {
       },
     };
   } else {
-    weights[blue] = 0;
+    weights[String(blue)] = 0;
     routing_params = {
       FunctionName: name,
       Name: alias,
