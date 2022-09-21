@@ -1,11 +1,11 @@
 const rollout = require("./rollout");
 
-const ALIAS = process.env.ALIAS || "alias";
-const FUNCTION_NAME = process.env.FUNCTION_NAME || "test";
-const BLUE_VERSION = process.env.BLUE_VERSION || "1";
-const GREEN_VERSION = process.env.GREEN_VERSION || "4";
-const ROLLOUT_STEPS = process.env.ROLLOUT_STEPS || "2";
-const ROLLOUT_TIME_IN_MINUTES = process.env.ROLLOUT_TIME_IN_MINUTES || "10";
+const ALIAS = process.env.ALIAS;
+const FUNCTION_NAME = process.env.FUNCTION_NAME;
+const BLUE_VERSION = process.env.BLUE_VERSION;
+const GREEN_VERSION = process.env.GREEN_VERSION;
+const ROLLOUT_STEPS = process.env.ROLLOUT_STEPS;
+const ROLLOUT_TIME_IN_MINUTES = process.env.ROLLOUT_TIME_IN_MINUTES;
 
 async function main() {
   await rollout.rollout(
