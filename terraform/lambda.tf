@@ -32,7 +32,7 @@ resource "aws_lambda_alias" "aws_lambda_traffic_shifting_action_demo_alias" {
   name             = "aws_lambda_traffic_shifting_action_demo"
   description      = "Traffic shifting demo"
   function_name    = aws_lambda_function.aws_lambda_traffic_shifting_action_demo.arn
-  function_version = "2"
+  function_version = aws_lambda_function.aws_lambda_traffic_shifting_action_demo_alias.version
   depends_on = [
     aws_lambda_alias.aws_lambda_traffic_shifting_action_demo_alias
   ]
