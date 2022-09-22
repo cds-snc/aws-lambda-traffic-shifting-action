@@ -128,3 +128,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# certs
+.csr
+.pem
+
+.DS_Store
+.terragrunt-cache
+.terraform
+*.PublishSettings
+
+package
