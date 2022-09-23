@@ -7,7 +7,6 @@ resource "aws_lambda_function" "aws_lambda_traffic_shifting_action_demo" {
   runtime     = "python3.8"
   timeout     = 10
   memory_size = 128
-  publish     = true
 
   role             = aws_iam_role.aws_lambda_traffic_shifting_action_demo.arn
   source_code_hash = filebase64sha256(data.archive_file.aws_lambda_traffic_shifting_action_demo.output_path)
