@@ -20,9 +20,25 @@ const cwMock = mockClient(CloudWatchClient);
 sinon.stub(console, "error");
 
 test("check_errors returns false if no error is found", async (t) => {
-  cwMock
-    .on(GetMetricDataCommand)
-    .resolves({ MetricDataResults: [{ Values: [] }] });
+  cwMock.on(GetMetricDataCommand).resolves({
+    MetricDataResults: [
+      {
+        Id: "e1",
+        Label: "e1",
+        Timestamps: [],
+        Values: [],
+        StatusCode: "Complete",
+        Messages: [
+          {
+            Code: "ArithmeticError",
+            Value:
+              "One or more data-points have been dropped due to non-numeric values (NaN, -Infinite, +Infinite)",
+          },
+        ],
+      },
+    ],
+    Messages: [],
+  });
   let result = await aws_calls.check_errors(
     "name",
     "alias",
