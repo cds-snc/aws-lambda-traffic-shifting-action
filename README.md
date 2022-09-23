@@ -48,10 +48,17 @@ env:
 ```
 
 Should your deploy succeed, you should see the following in your logs:
+
 ![successful_shift](https://user-images.githubusercontent.com/867334/192053660-71ebba38-e97f-43c4-9649-eafd7a81237c.png)
+
 Below is a CloudWatch graph of the traffic shifting between version 2 and version 4:
+
 ![traffic_shift_example](https://user-images.githubusercontent.com/867334/192053543-a91056f6-e8a1-415f-8622-2b37c7903855.png)
+
 Should your deploy fail, you should see the following in yours logs:
+
 ![failed_shift](https://user-images.githubusercontent.com/867334/192053661-138a66b7-b772-4bdb-a17b-b97f5076c941.png)
+
 Below is a CloudWatch graph of the error count when shifting between version 2 and version 3:
+
 ![error_count](https://user-images.githubusercontent.com/867334/192053574-a6acbb18-32ba-42fa-896a-d8cf3269c88d.png)
