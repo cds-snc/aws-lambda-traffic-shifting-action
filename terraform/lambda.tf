@@ -13,7 +13,7 @@ resource "aws_lambda_function" "aws_lambda_traffic_shifting_action_demo" {
 
   lifecycle {
     ignore_changes = [
-      function_version,
+      version,
     ]
   }
 
