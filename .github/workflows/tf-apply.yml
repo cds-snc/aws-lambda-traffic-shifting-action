@@ -46,11 +46,11 @@ jobs:
           echo "VERSION=$(aws lambda publish-version --function-name aws_lambda_traffic_shifting_action_demo | jq -r '.Version')" >> $GITHUB_ENV
 
       - name: Shift lambda traffic over 10 minutes
-        uses: cds-snc/aws-lambda-traffic-shifting-action@0.2
+        uses: cds-snc/aws-lambda-traffic-shifting-action@0.3
         env:
           ALIAS: aws_lambda_traffic_shifting_action_demo
           FUNCTION_NAME: aws_lambda_traffic_shifting_action_demo
           BLUE_VERSION: "2"
-          GREEN_VERSION: env.VERSION
+          GREEN_VERSION: "${{ env.VERSION }}"
           ROLLOUT_STEPS: 5
           ROLLOUT_TIME_IN_MINUTES: 10
