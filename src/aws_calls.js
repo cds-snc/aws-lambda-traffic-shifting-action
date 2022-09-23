@@ -19,7 +19,11 @@ const check_errors = async (name, alias, start_time) => {
   const end_time = new Date(Date.now() + 1000);
   const query = [
     {
-      Id: "check_error_query",
+      Id: "e1",
+      Expression: "1 / m1", // Drop datapoints that equal 0
+    },
+    {
+      Id: "m1",
       MetricStat: {
         Metric: {
           Namespace: "AWS/Lambda",
@@ -33,7 +37,7 @@ const check_errors = async (name, alias, start_time) => {
         Stat: "Sum",
         Unit: "Count",
       },
-      ReturnData: true,
+      ReturnData: false,
     },
   ];
   const command = new GetMetricDataCommand({
