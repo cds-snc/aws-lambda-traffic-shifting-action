@@ -36059,7 +36059,7 @@ const ROLLOUT_STEPS = process.env.ROLLOUT_STEPS;
 const ROLLOUT_TIME_IN_MINUTES = process.env.ROLLOUT_TIME_IN_MINUTES;
 
 async function main() {
-  await rollout.rollout(
+  const result = await rollout.rollout(
     ALIAS,
     FUNCTION_NAME,
     BLUE_VERSION,
@@ -36067,6 +36067,10 @@ async function main() {
     ROLLOUT_STEPS,
     ROLLOUT_TIME_IN_MINUTES
   );
+  if (result) {
+    process.exit(0);
+  }
+  process.exit(1);
 }
 
 main();
