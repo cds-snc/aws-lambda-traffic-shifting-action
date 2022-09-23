@@ -16,10 +16,10 @@ async function main() {
     ROLLOUT_STEPS,
     ROLLOUT_TIME_IN_MINUTES
   );
-  if(result){
-    process.exit(0)
+  if (result) {
+    process.exit(0);
   }
-  process.exit(1)
+  process.exit(1);
 }
 
 main();
