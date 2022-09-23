@@ -11,6 +11,12 @@ resource "aws_lambda_function" "aws_lambda_traffic_shifting_action_demo" {
   role             = aws_iam_role.aws_lambda_traffic_shifting_action_demo.arn
   source_code_hash = filebase64sha256(data.archive_file.aws_lambda_traffic_shifting_action_demo.output_path)
 
+  lifecycle {
+    ignore_changes = [
+      version,
+    ]
+  }
+
   depends_on = [
     aws_iam_role_policy_attachment.aws_lambda_traffic_shifting_action_demo,
     aws_cloudwatch_log_group.aws_lambda_traffic_shifting_action_demo,
