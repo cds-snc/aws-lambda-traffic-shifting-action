@@ -35,6 +35,12 @@ resource "aws_lambda_alias" "aws_lambda_traffic_shifting_action_demo_alias" {
   depends_on = [
     aws_lambda_alias.aws_lambda_traffic_shifting_action_demo_alias
   ]
+
+  lifecycle {
+    ignore_changes = [
+      function_version,
+    ]
+  }
 }
 
 data "archive_file" "aws_lambda_traffic_shifting_action_demo" {
