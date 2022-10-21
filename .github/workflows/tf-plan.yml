@@ -43,7 +43,7 @@ jobs:
           aws-region: "ca-central-1"
 
       - name: Terraform Plan ${{ matrix.module }}
-        uses: cds-snc/terraform-plan@v2
+        uses: cds-snc/terraform-plan@8be66db9c815352044405fd33120b91918bf1f2e # tag=v2.3.1
         with:
           comment-delete: true
           comment-title: Plan for ${{ matrix.module }}
