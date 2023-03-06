@@ -32,7 +32,7 @@
     "ava": "4.3.3",
     "aws-sdk-client-mock": "2.0.1",
     "c8": "7.13.0",
-    "eslint": "8.34.0",
+    "eslint": "8.35.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-security": "1.7.1",
     "husky": "8.0.3",
