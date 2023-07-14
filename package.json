@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/cds-snc/aws-lambda-traffic-shifting-action#readme",
   "dependencies": {
-    "@aws-sdk/client-cloudwatch": "^3.350.0",
-    "@aws-sdk/client-lambda": "^3.350.0",
+    "@aws-sdk/client-cloudwatch": "^3.347.0",
+    "@aws-sdk/client-lambda": "^3.347.0",
     "aws-sdk": "^2.1354.0"
   },
   "devDependencies": {
