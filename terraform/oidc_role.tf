@@ -24,7 +24,7 @@ module "gh_oidc_roles" {
 }
 
 module "attach_tf_plan_policy" {
-  source            = "github.com/cds-snc/terraform-modules//attach_tf_plan_policy?ref=v7.0.0"
+  source            = "github.com/cds-snc/terraform-modules//attach_tf_plan_policy?ref=v7.0.1"
   account_id        = data.aws_caller_identity.current.account_id
   role_name         = local.plan_name
   bucket_name       = "${var.billing_code}-tf"
