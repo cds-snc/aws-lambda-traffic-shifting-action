@@ -14,7 +14,7 @@ async function main() {
     BLUE_VERSION,
     GREEN_VERSION,
     ROLLOUT_STEPS,
-    ROLLOUT_TIME_IN_MINUTES
+    ROLLOUT_TIME_IN_MINUTES,
   );
   if (result) {
     process.exit(0);

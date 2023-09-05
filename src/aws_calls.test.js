@@ -42,7 +42,7 @@ test("check_errors returns false if no error is found", async (t) => {
   let result = await aws_calls.check_errors(
     "name",
     "alias",
-    new Date(Date.now() - 1000)
+    new Date(Date.now() - 1000),
   );
   t.is(result, false);
 });
@@ -54,7 +54,7 @@ test("check_errors returns true if an error is found", async (t) => {
   let result = await aws_calls.check_errors(
     "name",
     "alias",
-    new Date(Date.now() - 1000)
+    new Date(Date.now() - 1000),
   );
   t.is(result, true);
 });
@@ -64,7 +64,7 @@ test("check_errors returns true if there is an error querying cloudwatch", async
   let result = await aws_calls.check_errors(
     "name",
     "alias",
-    new Date(Date.now() - 1000)
+    new Date(Date.now() - 1000),
   );
   t.is(result, true);
 });
@@ -124,7 +124,7 @@ test("shift_traffic keeps the main alias at blue if less than 100% traffic", asy
     "alias",
     "blue",
     "green",
-    50
+    50,
   );
   t.is(
     lambdaMock.commandCalls(UpdateAliasCommand, {
@@ -135,7 +135,7 @@ test("shift_traffic keeps the main alias at blue if less than 100% traffic", asy
         AdditionalVersionWeights: { green: 0.5 },
       },
     }).length,
-    1
+    1,
   );
   t.is(result, true);
 });
@@ -147,7 +147,7 @@ test("shift_traffic shift the alias to green if 100% traffic", async (t) => {
     "alias",
     "blue",
     "green",
-    100
+    100,
   );
   t.is(
     lambdaMock.commandCalls(UpdateAliasCommand, {
@@ -158,7 +158,7 @@ test("shift_traffic shift the alias to green if 100% traffic", async (t) => {
         AdditionalVersionWeights: { blue: 0 },
       },
     }).length,
-    1
+    1,
   );
   t.is(result, true);
 });

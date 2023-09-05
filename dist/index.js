@@ -38982,7 +38982,7 @@ const rollout = async (
   blue_version,
   green_version,
   rollout_steps,
-  rollout_time_in_minutes
+  rollout_time_in_minutes,
 ) => {
   if (!validations.isValidAlias("alias", alias)) {
     return false;
@@ -38994,7 +38994,7 @@ const rollout = async (
 
   const aliased_function = await aws_calls.get_current_alias(
     function_name,
-    alias
+    alias,
   );
 
   blue_version = blue_version || aliased_function.FunctionVersion;
@@ -39009,18 +39009,18 @@ const rollout = async (
 
   const current_version = await aws_calls.get_lambda_by_version(
     function_name,
-    green_version
+    green_version,
   );
 
   if (!current_version) {
     console.error(
-      `❌ Your Green version (${green_version}) has not been published`
+      `❌ Your Green version (${green_version}) has not been published`,
     );
     return false;
   }
   if (blue_version == green_version) {
     console.error(
-      `❌ Your Blue version (${blue_version}) and Green version (${green_version}) are the same`
+      `❌ Your Blue version (${blue_version}) and Green version (${green_version}) are the same`,
     );
     return false;
   }
@@ -39032,7 +39032,7 @@ const rollout = async (
   if (
     !validations.isValidNumber(
       "rollout_time_in_minutes",
-      rollout_time_in_minutes
+      rollout_time_in_minutes,
     )
   ) {
     return false;
@@ -39044,14 +39044,14 @@ const rollout = async (
 
   if (INTERVAL < 1) {
     console.error(
-      "❌ Your shift interval (roll out time in minutes / rollout steps) is less than 1 minute, please use a larger interval"
+      "❌ Your shift interval (roll out time in minutes / rollout steps) is less than 1 minute, please use a larger interval",
     );
     return false;
   }
 
   if (REMAINDER != 0) {
     console.error(
-      `❌ Your shift interval (roll out time in minutes / rollout steps) needs to be an integer. Currently it is ${REMAINDER}`
+      `❌ Your shift interval (roll out time in minutes / rollout steps) needs to be an integer. Currently it is ${REMAINDER}`,
     );
     return false;
   }
@@ -39060,8 +39060,8 @@ const rollout = async (
 
   console.log(
     `🚀 Shifting ${PERCENTAGE.toFixed(
-      2
-    )}% of traffic, every ${INTERVAL} minute(s), over a total of ${rollout_time_in_minutes} minutes.\n\n`
+      2,
+    )}% of traffic, every ${INTERVAL} minute(s), over a total of ${rollout_time_in_minutes} minutes.\n\n`,
   );
 
   for (
@@ -39076,7 +39076,7 @@ const rollout = async (
       alias,
       blue_version,
       green_version,
-      shifted
+      shifted,
     );
 
     console.log(
@@ -39084,7 +39084,7 @@ const rollout = async (
         current_step * INTERVAL
       } minute(s). ${
         rollout_time_in_minutes - current_step * INTERVAL
-      } minute(s) remaining.`
+      } minute(s) remaining.`,
     );
 
     if (shifted.toFixed(2) != 100.0) {
@@ -39092,18 +39092,18 @@ const rollout = async (
         let err = await aws_calls.check_errors(
           function_name,
           alias,
-          start_time
+          start_time,
         );
         if (err) {
           console.error(
-            `🟥 An error was detected in Cloudwatch, rolling back to version ${blue_version}`
+            `🟥 An error was detected in Cloudwatch, rolling back to version ${blue_version}`,
           );
           await aws_calls.shift_traffic(
             function_name,
             alias,
             green_version,
             blue_version,
-            100
+            100,
           );
           return false;
         }
@@ -39114,7 +39114,7 @@ const rollout = async (
   }
 
   console.log(
-    `\n\n🟩 Traffic shift completed after ${rollout_time_in_minutes} minute(s) from version ${blue_version} to version ${green_version} for alias ${alias}`
+    `\n\n🟩 Traffic shift completed after ${rollout_time_in_minutes} minute(s) from version ${blue_version} to version ${green_version} for alias ${alias}`,
   );
   return true;
 };
@@ -39134,7 +39134,7 @@ const isValidAlias = (v, alias) => {
 
   if (alias.length < 1 || alias.length > 128) {
     console.error(
-      "❌ Alias needs to be between 1 and 128 characters in length."
+      "❌ Alias needs to be between 1 and 128 characters in length.",
     );
     return false;
   }
@@ -39156,7 +39156,7 @@ const isValidFunctionName = (v, name) => {
 
   if (name.length < 1 || name.length > 140) {
     console.error(
-      "❌ Function name needs to be between 1 and 140 characters in length."
+      "❌ Function name needs to be between 1 and 140 characters in length.",
     );
     return false;
   }
@@ -39167,7 +39167,7 @@ const isValidFunctionName = (v, name) => {
 
   if (!re.test(name)) {
     console.error(
-      `❌ Function name is not valid, it needs to match ${pattern}`
+      `❌ Function name is not valid, it needs to match ${pattern}`,
     );
     return false;
   }
@@ -39196,7 +39196,7 @@ const isValidVersion = (v, version) => {
 
   if (version.length < 1 || version.length > 1024) {
     console.error(
-      `❌ ${v} needs to be between 1 and 1024 characters in length.`
+      `❌ ${v} needs to be between 1 and 1024 characters in length.`,
     );
     return false;
   }
@@ -39436,7 +39436,7 @@ async function main() {
     BLUE_VERSION,
     GREEN_VERSION,
     ROLLOUT_STEPS,
-    ROLLOUT_TIME_IN_MINUTES
+    ROLLOUT_TIME_IN_MINUTES,
   );
   if (result) {
     process.exit(0);
