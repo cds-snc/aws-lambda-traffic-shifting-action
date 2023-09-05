@@ -6,7 +6,7 @@ locals {
 data "aws_caller_identity" "current" {}
 
 module "gh_oidc_roles" {
-  source = "github.com/cds-snc/terraform-modules//gh_oidc_role?ref=v3.0.20"
+  source = "github.com/cds-snc/terraform-modules//gh_oidc_role?ref=v7.0.1"
   roles = [
     {
       name      = local.plan_name
