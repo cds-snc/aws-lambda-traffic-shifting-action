@@ -36,7 +36,7 @@ test("rollout returns false if blue_version is not valid", async (t) => {
     false,
     "2",
     2,
-    2
+    2,
   );
   t.is(result, false);
 });

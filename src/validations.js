@@ -5,7 +5,7 @@ const isValidAlias = (v, alias) => {
 
   if (alias.length < 1 || alias.length > 128) {
     console.error(
-      "❌ Alias needs to be between 1 and 128 characters in length."
+      "❌ Alias needs to be between 1 and 128 characters in length.",
     );
     return false;
   }
@@ -27,7 +27,7 @@ const isValidFunctionName = (v, name) => {
 
   if (name.length < 1 || name.length > 140) {
     console.error(
-      "❌ Function name needs to be between 1 and 140 characters in length."
+      "❌ Function name needs to be between 1 and 140 characters in length.",
     );
     return false;
   }
@@ -38,7 +38,7 @@ const isValidFunctionName = (v, name) => {
 
   if (!re.test(name)) {
     console.error(
-      `❌ Function name is not valid, it needs to match ${pattern}`
+      `❌ Function name is not valid, it needs to match ${pattern}`,
     );
     return false;
   }
@@ -67,7 +67,7 @@ const isValidVersion = (v, version) => {
 
   if (version.length < 1 || version.length > 1024) {
     console.error(
-      `❌ ${v} needs to be between 1 and 1024 characters in length.`
+      `❌ ${v} needs to be between 1 and 1024 characters in length.`,
     );
     return false;
   }

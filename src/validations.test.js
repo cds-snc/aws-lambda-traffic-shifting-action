@@ -36,7 +36,7 @@ test("isValidFunctionName should be more than 0 characters", (t) => {
 test("isValidFunctionName should be less than 141 characters", (t) => {
   t.is(
     validations.isValidFunctionName("function_name", "a".repeat(141)),
-    false
+    false,
   );
 });
 
